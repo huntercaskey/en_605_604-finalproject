@@ -9,13 +9,16 @@
 class VaccinationStation
 {
 public:
-	VaccinationStation();
-	void performVaccination(PatientRecord& patient);
+	VaccinationStation() = default;
+	VaccinationStation(int stationId);
+	void performVaccination(PatientRecord& patient, unsigned timeNow);
 	void nextDay();
-	unsigned getNextAvailableTime(unsigned elapsedTime) const;
+	bool isAvailable(unsigned currentTime) const;
 private:
 	constexpr static int AVERAGE_INJECTIONS_PER_HOUR = 15;
+	int stationId = -1;
 	std::function<double()> getServiceTime;
-	unsigned lastServiceTime = 0;
+	unsigned currentVaccinationDuration = 0;
+	unsigned currentVaccinationStart = 0;
 };
 
