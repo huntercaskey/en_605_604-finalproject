@@ -11,6 +11,7 @@ int main()
     constexpr unsigned DAYS_TO_RUN_SIMULATION = 5;
     Simulation simulation;
     simulation.runSimulation(DAYS_TO_RUN_SIMULATION);
+    return 0;
 }
 
 Simulation::Simulation() : vaccinationCenter() { }
@@ -27,12 +28,11 @@ void Simulation::runSimulation(unsigned daysToSimulate)
 
 void Simulation::simulateOneDay()
 {
-    std::default_random_engine generator;
-
     // Seed the simulation with the number of patients that arrive within each hour time-block,
     // assuming a normal distribution around 30 arrivals/hour with a standard deviation of 1.
     const double AVERAGE_ARRIVALS_PER_HOUR = 30.0;
     const double STANDARD_DEVIATION = 1.0;
+    std::default_random_engine generator;
     generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
     std::normal_distribution<double> distribution(AVERAGE_ARRIVALS_PER_HOUR, STANDARD_DEVIATION);
 
@@ -43,9 +43,8 @@ void Simulation::simulateOneDay()
         double number = distribution(generator);
         int patientsInCurrentHour = int(round(number));
 
-        // Create the object to model patients. Assuming 20% of the population is 65 years old or over; use this
-        // metric to make a randomized determination if the patient gets marked as senior vs. non-senior.
-
+        // Create the object to model patients. Assume 20% of the population is 65 years old or over; use this
+        // metric to make a randomized determination of the patient gets marked as senior vs. non-senior.
         std::uniform_int_distribution<unsigned> distribution(0, 99);
         const unsigned seniorThreshold = 20;
         for (size_t idx = 0; idx < patientsInCurrentHour; idx++)

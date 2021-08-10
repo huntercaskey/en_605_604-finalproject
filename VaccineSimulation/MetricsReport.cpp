@@ -10,7 +10,7 @@ MetricsReport::MetricsReport(unsigned simulationDays,
                              double averageTotalTime, 
                              double averageVerificationQueueWaitTime,
                              double averageVaccinationQueueWaitTime)
-    : simulationDays(simulationDays)
+    : operationalDays(simulationDays)
     , totalCustomers(totalCustomers)
     , averageCustomersPerDay(averageCustomersPerDay)
     , averageTotalTime(averageTotalTime)
@@ -22,7 +22,7 @@ MetricsReport::MetricsReport(unsigned simulationDays,
 std::string MetricsReport::toString()
 {
     std::stringstream ss;
-    ss << "==== Metrics Report for running the Vaccine Center Simulation " << simulationDays << "Days ====" << std::endl;
+    ss << "==== Metrics Report for running the Vaccine Center Simulation " << operationalDays << "Days ====" << std::endl;
     ss << "Total Number of Customer Serviced: " << totalCustomers << std::endl;
     ss << "Average Number of Customers Serviced Per Day: " << averageCustomersPerDay << std::endl;
     ss << "Average Total Time in System (Queue Time + Service Time): " << averageTotalTime << std::endl;
