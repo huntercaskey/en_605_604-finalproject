@@ -1,5 +1,6 @@
 #pragma once
 
+// From the C++ Standard Library
 #include <string>
 
 class MetricsReport
@@ -13,6 +14,7 @@ public:
 				  double averageVaccinationQueueWaitTime);
 
 	std::string toString();
+
 private:
 	unsigned simulationDays;
 	unsigned totalCustomers;

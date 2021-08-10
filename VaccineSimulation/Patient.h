@@ -1,12 +1,10 @@
 #pragma once
 
-#include <string>
-
-class PatientRecord
+class Patient
 {
 public:
-	PatientRecord(int identifier);
-	PatientRecord() = delete;
+	Patient(int identifier);
+	Patient() = delete;
 	void setArrivalTime(int arrivalTime);
 	void setVaccinatedDate(int date);
 	void setVerificationQueueWaitTime(int verificationQueueWaitTime);
@@ -28,14 +26,14 @@ private:
 	int vaccinationStationServiceTime = -1;
 };
 
-class SeniorPatient : public PatientRecord
+class SeniorPatient : public Patient
 {
 public:
-	SeniorPatient(int identifier) : PatientRecord(identifier) { }
+	SeniorPatient(int identifier) : Patient(identifier) { }
 };
 
-class NonSeniorPatient : public PatientRecord
+class NonSeniorPatient : public Patient
 {
 public:
-	NonSeniorPatient(int identifier) : PatientRecord(identifier) { }
+	NonSeniorPatient(int identifier) : Patient(identifier) { }
 };

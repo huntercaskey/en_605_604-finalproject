@@ -1,10 +1,12 @@
 #pragma once
 
+// From the C++ Standard Library
 #include <array>
 #include <list>
+#include <vector>
 
+// Local Includes
 #include "Patient.h"
-#include "CheckInArea.h"
 #include "VaccinationStation.h"
 
 class VaccinationCenter
@@ -19,16 +21,13 @@ public:
 private:
 
 	// Centralized location to store all information about patients serviced
-	std::vector<PatientRecord> patientRecords;
+	std::vector<Patient> patientRecords;
 	
 	std::list<size_t> newPatients;
 
 	// Queues to hold patients after they have checked-in, while they are waiting for an available VaccinationStation
 	std::list<size_t> seniorQueue;
 	std::list<size_t> nonSeniorQueue;
-
-	// Used to handle the verification process of a patient.
-	CheckInArea checkinArea;
 
 	// Time tracking for the Vaccination Center
 	constexpr static int START_TIME_MINUTES = 0;

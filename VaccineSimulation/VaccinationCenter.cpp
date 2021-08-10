@@ -1,12 +1,14 @@
+// Class Header Include
+#include "VaccinationCenter.h"
 
+// From the C++ Standard Library
+#include <functional>
+#include <iostream>
+#include <limits.h>
 #include <random>
 
-#include "VaccinationCenter.h"
 #include "MetricsReport.h"
-#include <stdexcept>
-#include <iostream>
-#include <functional>
-#include <limits.h>
+
 
 VaccinationCenter::VaccinationCenter()
 {
@@ -91,7 +93,7 @@ void VaccinationCenter::stepOneHour()
         {
             size_t patientIndex = this->newPatients.front();
             this->newPatients.pop_front();
-            PatientRecord& patient = this->patientRecords.at(patientIndex);
+            Patient& patient = this->patientRecords.at(patientIndex);
         
             patient.setArrivalTime(arrivalTimes.front());
             patient.setVerificationQueueWaitTime(waitTimes.front());
@@ -110,7 +112,7 @@ void VaccinationCenter::stepOneHour()
         {
             // Get the patient who is next in line
             size_t patientIndex = this->seniorQueue.front();
-            PatientRecord& patient = this->patientRecords.at(patientIndex);
+            Patient& patient = this->patientRecords.at(patientIndex);
 
             // Verify the patient has gone-through check-in before attempting to service them
             unsigned vaccineQueueEntryTime = patient.getArrivalTime() + patient.getVerificationQueueWaitTime();
@@ -145,7 +147,7 @@ void VaccinationCenter::stepOneHour()
         {
             // Get the patient who is next in line
             size_t patientIndex = this->nonSeniorQueue.front();
-            PatientRecord& patient = this->patientRecords.at(patientIndex);
+            Patient& patient = this->patientRecords.at(patientIndex);
 
             // Verify the patient has gone-through check-in before attempting to service them
             unsigned vaccineQueueEntryTime = patient.getArrivalTime() + patient.getVerificationQueueWaitTime();
@@ -203,6 +205,9 @@ void VaccinationCenter::nextDay()
 {
     this->elapsedTime = 0;
     this->date++;
+    this->seniorQueue.clear();
+    this->nonSeniorQueue.clear();
+    this->newPatients.clear();
 }
 
 void VaccinationCenter::printReport()
@@ -216,7 +221,7 @@ void VaccinationCenter::printReport()
     unsigned totalVerificationQueueWaitTime = 0;
     unsigned totalVaccinationQueueWaitTime = 0;
 
-    for (PatientRecord& patient : this->patientRecords)
+    for (Patient& patient : this->patientRecords)
     {
         totalPatientTime += patient.getVerificationQueueWaitTime() + patient.getVaccinationStationQueueWaitTime() + patient.getVaccinationStationServiceTime();
         totalVerificationQueueWaitTime += patient.getVerificationQueueWaitTime();

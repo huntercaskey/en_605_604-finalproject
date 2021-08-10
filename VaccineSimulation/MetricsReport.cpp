@@ -1,5 +1,7 @@
+// Class Header Include
 #include "MetricsReport.h"
 
+// From the C++ Standard Library
 #include <sstream>
 
 MetricsReport::MetricsReport(unsigned simulationDays, 

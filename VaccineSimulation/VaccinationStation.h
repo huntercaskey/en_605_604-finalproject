@@ -1,9 +1,10 @@
 #pragma once
 
+// From the C++ Standard Library
 #include <cstdint>
 #include <functional>
-#include <random>
 
+// Local Includes
 #include "Patient.h"
 
 class VaccinationStation
@@ -11,7 +12,7 @@ class VaccinationStation
 public:
 	VaccinationStation() = default;
 	VaccinationStation(int stationId);
-	void performVaccination(PatientRecord& patient, unsigned timeNow);
+	void performVaccination(Patient& patient, unsigned timeNow);
 	void nextDay();
 	bool isAvailable(unsigned currentTime) const;
 private:

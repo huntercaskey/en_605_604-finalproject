@@ -1,4 +1,10 @@
+// Class Header Include
 #include "VaccinationStation.h"
+
+// From the C++ Standard Library
+#include <random>
+
+// Local Includes
 #include "Patient.h"
 
 VaccinationStation::VaccinationStation(int stationId) : stationId(stationId)
@@ -8,7 +14,7 @@ VaccinationStation::VaccinationStation(int stationId) : stationId(stationId)
     this->getServiceTime = std::bind(distribution, generator);
 }
 
-void VaccinationStation::performVaccination(PatientRecord& patient, unsigned timeNow)
+void VaccinationStation::performVaccination(Patient& patient, unsigned timeNow)
 {
     this->currentVaccinationStart = timeNow;
     double distributionSample = this->getServiceTime();
