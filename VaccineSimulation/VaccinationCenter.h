@@ -15,6 +15,7 @@ public:
 	void acceptSenior(int patientId);
 	void stepOneHour();
 	void nextDay();
+	void printReport();
 private:
 
 	// Centralized location to store all information about patients serviced

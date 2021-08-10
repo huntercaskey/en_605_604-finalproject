@@ -30,6 +30,9 @@
     <ClCompile Include="CheckInArea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MetricsReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Simulation.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CheckInArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MetricsReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

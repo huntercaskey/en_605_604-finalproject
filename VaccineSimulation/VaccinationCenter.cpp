@@ -2,7 +2,9 @@
 #include <random>
 
 #include "VaccinationCenter.h"
+#include "MetricsReport.h"
 #include <stdexcept>
+#include <iostream>
 #include <functional>
 #include <limits.h>
 
@@ -201,6 +203,32 @@ void VaccinationCenter::nextDay()
 {
     this->elapsedTime = 0;
     this->date++;
+}
+
+void VaccinationCenter::printReport()
+{
+    
+    unsigned simulationDays = this->date + 1;
+    unsigned totalCustomers = this->patientRecords.size();
+    unsigned averageCustomersPerDay = totalCustomers / simulationDays;
+
+    unsigned totalPatientTime = 0;
+    unsigned totalVerificationQueueWaitTime = 0;
+    unsigned totalVaccinationQueueWaitTime = 0;
+
+    for (PatientRecord& patient : this->patientRecords)
+    {
+        totalPatientTime += patient.getVerificationQueueWaitTime() + patient.getVaccinationStationQueueWaitTime() + patient.getVaccinationStationServiceTime();
+        totalVerificationQueueWaitTime += patient.getVerificationQueueWaitTime();
+        totalVaccinationQueueWaitTime += patient.getVerificationQueueWaitTime();
+    }
+
+    double averageTotalTime = totalPatientTime / totalCustomers;
+    double averageVerificationQueueWaitTime = totalVerificationQueueWaitTime / totalCustomers;
+    double averageVaccinationQueueWaitTime = totalVaccinationQueueWaitTime / totalCustomers;
+
+    MetricsReport report(simulationDays, totalCustomers, averageCustomersPerDay, averageTotalTime, averageVerificationQueueWaitTime, averageVaccinationQueueWaitTime);
+    std::cout << report.toString();
 }
 
 

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CheckInArea.cpp" />
+    <ClCompile Include="MetricsReport.cpp" />
     <ClCompile Include="Patient.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="VaccinationCenter.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CheckInArea.h" />
+    <ClInclude Include="MetricsReport.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="VaccinationCenter.h" />

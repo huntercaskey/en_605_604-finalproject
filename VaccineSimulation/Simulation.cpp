@@ -26,7 +26,7 @@ int main()
     {
         double number = distribution(generator);
         int patientsInCurrentHour = int(round(number));
-        std::cout << "Total Patients Arriving in time block " << i << " = " << patientsInCurrentHour << std::endl;
+        //std::cout << "Total Patients Arriving in time block " << i << " = " << patientsInCurrentHour << std::endl;
 
 
         // Create the object to model patients. Assuming 20% of the population is 65 years old or over; use this
@@ -49,6 +49,7 @@ int main()
         }
         vaccinationCenter.stepOneHour();
     }
+    vaccinationCenter.printReport();
 
 
 
